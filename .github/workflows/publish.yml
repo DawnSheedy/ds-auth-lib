@@ -1,10 +1,10 @@
-name: Publish ds-auth-lib to npmjs
+name: Publish ds-auth-lib to Github Packages
 on:
   release:
     types: [published]
 jobs:
   build:
-    name: Build and Publish to NPM
+    name: Build and Publish to Github Packages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

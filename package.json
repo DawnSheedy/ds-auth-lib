@@ -1,13 +1,12 @@
 {
   "name": "@dawnsheedy/ds-auth-lib",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Authentication Token Library for DS Services",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "repository": "https://github.com/DawnSheedy/ds-auth-lib",
   "author": "Dawn Sheedy (dawn@dawnsheedy.com)",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "build": "tsc",
     "test": "SECRET=secret TOKEN_LENGTH=1 jest"
