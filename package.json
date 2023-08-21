@@ -1,6 +1,6 @@
 {
   "name": "@dawnsheedy/ds-auth-lib",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Authentication Token Library for DS Services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
