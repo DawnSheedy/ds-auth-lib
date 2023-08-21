@@ -6,6 +6,9 @@
   "types": "build/index.d.ts",
   "repository": "https://github.com/DawnSheedy/ds-auth-lib",
   "author": "Dawn Sheedy (dawn@dawnsheedy.com)",
+  "files": [
+    "build/**/*"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "tsc",
