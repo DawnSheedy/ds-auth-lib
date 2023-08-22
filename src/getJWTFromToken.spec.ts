@@ -5,6 +5,7 @@ describe("Token Generation", () => {
   it("should generate a token with given secret", () => {
     const token = getJWTFromToken({
       userId: "test",
+      userName: 'test',
       firstName: "test",
       lastName: "test",
       permissions: [],
@@ -20,6 +21,7 @@ describe("Token Generation", () => {
     try {
       const token = getJWTFromToken({
         userId: "test",
+        userName: 'test',
         firstName: "test",
         lastName: "test",
         permissions: [],

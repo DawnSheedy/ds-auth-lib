@@ -3,7 +3,8 @@
  */
 export interface AuthToken {
   userId: string;
+  userName: string;
   firstName: string;
   lastName: string;
-  permissions: number[];
+  permissions: string[];
 }
