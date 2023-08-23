@@ -10,11 +10,17 @@ import { getTokenFromJWT } from "./getTokenFromJWT";
  * @param next
  */
 export const userAuthenticatedMiddleware: RequestHandler = (req, res, next) => {
-  if (!req.cookies?.authToken) {
+  if (
+    !req.cookies?.authToken &&
+    !req.headers?.authorization &&
+    !req.headers?.authorization?.startsWith("Bearer ")
+  ) {
     return res.sendStatus(401);
   }
 
-  const identity = getTokenFromJWT(req.cookies.authToken);
+  const jwt = req.cookies?.authToken ?? req.headers?.authorization?.slice(7);
+
+  const identity = getTokenFromJWT(jwt);
 
   if (!identity) {
     return res.sendStatus(401);

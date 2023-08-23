@@ -5,7 +5,7 @@ import { userAuthenticatedMiddleware } from "./userAuthenticatedMiddleware";
 import { userHasPermissionMiddleware } from "./userHasPermissionMiddleware";
 
 export {
-  AuthToken,
+  AuthToken as UserIdentity,
   getJWTFromToken,
   getTokenFromJWT,
   userAuthenticatedMiddleware,
