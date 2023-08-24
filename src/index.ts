@@ -3,6 +3,8 @@ import { getJWTFromToken } from "./getJWTFromToken";
 import { getTokenFromJWT } from "./getTokenFromJWT";
 import { userAuthenticatedMiddleware } from "./userAuthenticatedMiddleware";
 import { userHasPermissionMiddleware } from "./userHasPermissionMiddleware";
+import { clearAuthCookies } from "./clearAuthCookies";
+import { issueCookiesForToken } from "./issueCookiesForToken";
 
 export {
   AuthToken as UserIdentity,
@@ -10,4 +12,6 @@ export {
   getTokenFromJWT,
   userAuthenticatedMiddleware,
   userHasPermissionMiddleware,
+  clearAuthCookies,
+  issueCookiesForToken,
 };
