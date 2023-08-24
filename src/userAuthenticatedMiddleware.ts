@@ -11,14 +11,21 @@ import { getTokenFromJWT } from "./getTokenFromJWT";
  */
 export const userAuthenticatedMiddleware: RequestHandler = (req, res, next) => {
   if (
-    !req.cookies?.authToken &&
+    !req.cookies?.TOKEN &&
     !req.headers?.authorization &&
     !req.headers?.authorization?.startsWith("Bearer ")
   ) {
     return res.sendStatus(401);
   }
 
-  const jwt = req.cookies?.authToken ?? req.headers?.authorization?.slice(7);
+  const isCookieAuth = !!req.cookies?.TOKEN;
+
+  const jwt = req.cookies?.TOKEN ?? req.headers?.authorization?.slice(7);
+
+  // Check to make sure X-CSRF-TOKEN matches auth cookie
+  if (isCookieAuth && jwt !== req.headers["X-CSRF-Token"]) {
+    res.sendStatus(401);
+  }
 
   const identity = getTokenFromJWT(jwt);
 

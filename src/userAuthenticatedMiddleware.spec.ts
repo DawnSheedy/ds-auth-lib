@@ -13,11 +13,11 @@ describe("User authentication middleware", () => {
     });
   });
 
-  it("should continue if the user is authenticated with cookie", () => {
+  it("should continue if the user is authenticated with cookie and has X-CSRF-Token header set", () => {
     const next = jest.fn();
 
     userAuthenticatedMiddleware(
-      { cookies: { authToken: jwt } } as any,
+      { cookies: { TOKEN: jwt }, headers: { "X-CSRF-Token": jwt } } as any,
       {} as any,
       next
     );
@@ -52,7 +52,27 @@ describe("User authentication middleware", () => {
     const res = { sendStatus: jest.fn() } as any;
 
     userAuthenticatedMiddleware(
-      { cookies: { authToken: "invalid !" } } as any,
+      {
+        cookies: { TOKEN: "invalid !" },
+        headers: { "X-CSRF-Token": jwt },
+      } as any,
+      res,
+      next
+    );
+
+    expect(res.sendStatus).toHaveBeenCalledWith(401);
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  it("should 401 if token cookie doesn't match X-CSRF-Token header", () => {
+    const next = jest.fn();
+    const res = { sendStatus: jest.fn() } as any;
+
+    userAuthenticatedMiddleware(
+      {
+        cookies: { TOKEN: jwt + "1" },
+        headers: { "X-CSRF-Token": jwt },
+      } as any,
       res,
       next
     );
