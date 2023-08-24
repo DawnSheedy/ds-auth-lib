@@ -17,7 +17,7 @@ describe("User authentication middleware", () => {
     const next = jest.fn();
 
     userAuthenticatedMiddleware(
-      { cookies: { TOKEN: jwt }, headers: { "X-CSRF-Token": jwt } } as any,
+      { cookies: { TOKEN: jwt }, headers: { "x-csrf-token": jwt } } as any,
       {} as any,
       next
     );
@@ -54,7 +54,7 @@ describe("User authentication middleware", () => {
     userAuthenticatedMiddleware(
       {
         cookies: { TOKEN: "invalid !" },
-        headers: { "X-CSRF-Token": jwt },
+        headers: { "x-csrf-token": jwt },
       } as any,
       res,
       next
@@ -71,7 +71,7 @@ describe("User authentication middleware", () => {
     userAuthenticatedMiddleware(
       {
         cookies: { TOKEN: jwt + "1" },
-        headers: { "X-CSRF-Token": jwt },
+        headers: { "x-csrf-token": jwt },
       } as any,
       res,
       next

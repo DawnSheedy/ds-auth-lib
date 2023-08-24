@@ -23,7 +23,7 @@ export const userAuthenticatedMiddleware: RequestHandler = (req, res, next) => {
   const jwt = req.cookies?.TOKEN ?? req.headers?.authorization?.slice(7);
 
   // Check to make sure X-CSRF-TOKEN matches auth cookie
-  if (isCookieAuth && jwt !== req.headers["X-CSRF-Token"]) {
+  if (isCookieAuth && jwt !== req.headers["x-csrf-token"]) {
     res.sendStatus(401);
   }
 
